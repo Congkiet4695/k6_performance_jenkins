@@ -1,15 +1,13 @@
 pipeline {
-  agent any
-  stages {
-    stage('verify k6') {
-      steps {
-        sh 'k6 version'
-      }
+    agent any
+    stages {
+        stage('Performance Testing') {
+            steps {
+                echo 'Installing k6'
+                bat './setup_k6.exe'
+                echo 'Running K6 performance tests...'
+                bat 'k6 run function-test/login-test.js'
+            }
+        }
     }
-    stage('run k6 test') {
-      steps {
-        sh 'k6 run script.js'
-      }
-    }
-  }
 }

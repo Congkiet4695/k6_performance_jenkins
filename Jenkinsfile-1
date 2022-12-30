@@ -3,10 +3,10 @@ pipeline {
     stages {
         stage('Performance Testing') {
             steps {
-                echo 'Installing k6'
-                bat './setup_k6.exe'
-                echo 'Running K6 performance tests...'
-                bat 'k6 run function-test/login-test.js'
+                echo 'Run jmeter'
+                sh 'cd ../../../home/cong-kiet/jmenter/apache-jmeter-5.5/bin'
+                sh 'ls -a'
+                sh './jmeter -jjmeter.save.saveservice.output_format=xml -n -t ../../test/create_gr.jmx -l ../../test/create_gr.jtl'
             }
         }
     }
